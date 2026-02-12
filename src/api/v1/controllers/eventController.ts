@@ -31,4 +31,15 @@ export const createEvent = async (req: Request, res: Response, next: NextFunctio
     }
 };
 
+export const updateEvent = async (req: Request, res: Response, next: NextFunction) => {
+    try {
+        const id = String(req.params.id);
+
+        const event = await eventService.updateEvent(id, req.body);
+        res.status(200).json(successResponse(event, "Event updated succesfully"));
+    } catch (error: unknown) {
+        next(error);
+    }
+};
+
 
