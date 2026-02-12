@@ -62,4 +62,33 @@ export const getEventById = async (id: string): Promise<Event | undefined> => {
     }
 };
 
+export const updateEvent = async (id: string, updateData: Omit<Event, "id" | "createdAt"> ): Promise<Event> => {
+    
+    const existingDocument = await getEventById(id);
 
+    if(!existingDocument){
+        throw new Error("Id is invalid");
+    }
+
+    // update the data of the id
+    await eventRepository.updateDocument("events", id, {...updateData, updatedAt: new Date()});
+
+    // object spread operator to merge updated code into existing one
+    return {
+        ...existingDocument,
+        ...updateData,
+        updatedAt: new Date()
+    }
+};
+
+export const deleteEvent = async (id: string): Promise<void> => {
+
+    const document = await getEventById(id);
+
+    if(!document){
+        throw new Error("Id is invalid");
+    }
+
+    await eventRepository.deleteDocument("events", id);
+
+}
