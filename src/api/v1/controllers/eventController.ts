@@ -42,4 +42,13 @@ export const updateEvent = async (req: Request, res: Response, next: NextFunctio
     }
 };
 
+export const deleteEvent = async (req: Request, res: Response, next: NextFunction) => {
+    try {
+        const id = String(req.params.id);
 
+        const event = await eventService.deleteEvent(id);
+        res.status(200).json(successResponse(event, "Event deleted succesfully"));
+    } catch (error: unknown) {
+        next(error);
+    }
+};
