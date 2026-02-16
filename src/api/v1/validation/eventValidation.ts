@@ -3,6 +3,7 @@ import Joi from "joi";
 // Post operation schemas organized by request part
 export const postSchemas = {
     // POST /posts - Create new post
+    // validate all the require fields when creating
     create: {
         body: Joi.object({
             name: Joi.string().min(3).required().messages({
@@ -38,7 +39,7 @@ export const postSchemas = {
             }),
         }),
     },
-    
+    // validate all the require fields when updating
     update: {
         body: Joi.object({
             name: Joi.string().min(3).required().messages({
@@ -74,13 +75,13 @@ export const postSchemas = {
             }),
         }),
     },
-
+    // validate all the require fields when calling an event by its id
     getById: {
         body: Joi.object({
             id: Joi.string().required()
         }),
     },
-
+    // validate all the require fields when deleting an event by its id
     delete: {
         body: Joi.object({
             id: Joi.string().required()
