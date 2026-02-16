@@ -5,7 +5,8 @@ import * as eventService from "../services/eventService"
 export const getAllEvent = async (req: Request, res: Response, next: NextFunction) => {
     try {
         const event = await eventService.getAllEvents();
-        res.status(200).json(successResponse(event, "Succesfully retreived"));
+        const totalCount = event ? 1: 0;
+        res.status(200).json(successResponse(event, "Succesfully retreived", totalCount));
     } catch (error: unknown) {
         next(error);
     }
@@ -14,8 +15,8 @@ export const getAllEvent = async (req: Request, res: Response, next: NextFunctio
 export const getEventById = async (req: Request, res: Response, next: NextFunction) => {
     try {
         const id = String(req.params.id);
-
         const event = await eventService.getEventById(id);
+
         res.status(200).json(successResponse(event, "Event retrieved successfully"));
     } catch (error: unknown) {
         next(error);

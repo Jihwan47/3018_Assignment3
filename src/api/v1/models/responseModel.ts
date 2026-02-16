@@ -19,7 +19,8 @@ export interface ApiResponse<T> {
  */
 export const successResponse = <T>(
     data?: T /** The data to include in the response. */,
-    message?: string /** A message providing additional information about the response. */
+    message?: string, /** A message providing additional information about the response. */
+    count?: number
 ): ApiResponse<T> => ({
     message,
     status: "success",
