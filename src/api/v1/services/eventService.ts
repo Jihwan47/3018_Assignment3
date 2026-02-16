@@ -17,13 +17,19 @@ export const createEvent = async (event: CreateEventRequest): Promise<Event> => 
 
     // get id from the data base
     const newEventId = await eventRepository.createDocument("events", newEvent);
+
+    const countEvents = await eventRepository.getDocuments("events");
+    const count = countEvents.size + 1;
+    const formattedId = `evt_${String(count).padStart(6,"0")}`;
+
+
     // get information of id
     const dbDocument = await eventRepository.getDocumentById("events", newEventId);
     // save the data as Event format
     const savedData = dbDocument?.data() as Event;
 
     return {
-        id: newEventId,
+        id: formattedId,
         name: savedData.name,
         date: savedData.date,
         capacity: savedData.capacity,
