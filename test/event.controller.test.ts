@@ -31,7 +31,7 @@ describe("Event Controller", () => {
 
       await eventController.createEvent(mockReq as Request, mockRes as Response, mockNext);
 
-      expect(mockRes.status).toHaveBeenCalledWith(200);
+      expect(mockRes.status).toHaveBeenCalledWith(201);
       expect(mockRes.json).toHaveBeenCalledWith(expect.objectContaining({ data: mockEvent }));
     });
 

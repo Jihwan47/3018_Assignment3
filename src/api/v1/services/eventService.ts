@@ -47,9 +47,13 @@ export const getAllEvents = async (): Promise<Event[]> => {
 
 
     // use map to allocate document data and transform into Event data form
-    return document.docs.map(doc => ({
-        ...(doc.data() as Event)
-    }));
+    return document.docs.map(doc => {
+        const data = doc.data() as Omit <Event, "id">;
+        return{
+            id:doc.id,
+            ...data
+        } as Event;
+    });
 };
 
 export const getEventById = async (id: string): Promise<Event | undefined> => {
