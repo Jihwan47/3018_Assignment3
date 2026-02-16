@@ -33,10 +33,6 @@ export interface Event {
     updatedAt: Date
 }
 
-export interface ApiResponse <T>{
-    message: string,
-    data: T
-}
 
 //example be 
 //const response: ApiResponse<Event>
