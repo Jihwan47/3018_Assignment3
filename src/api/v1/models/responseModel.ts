@@ -8,6 +8,7 @@ export interface ApiResponse<T> {
     message?: string /** A message providing additional information about the response. */;
     error?: string /** An error message, if applicable. */;
     code?: string /** An error code, if applicable. */;
+    count?: number; /** Added count */
 }
 
 /**
@@ -24,5 +25,6 @@ export const successResponse = <T>(
 ): ApiResponse<T> => ({
     message,
     status: "success",
+    count,
     data
 });

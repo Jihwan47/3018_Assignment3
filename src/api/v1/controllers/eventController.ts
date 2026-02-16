@@ -5,7 +5,7 @@ import * as eventService from "../services/eventService"
 export const getAllEvent = async (req: Request, res: Response, next: NextFunction) => {
     try {
         const event = await eventService.getAllEvents();
-        const totalCount = event ? 1: 0;
+        const totalCount = event.length;
         res.status(200).json(successResponse(event, "Succesfully retreived", totalCount));
     } catch (error: unknown) {
         next(error);
