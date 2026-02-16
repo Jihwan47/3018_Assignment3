@@ -25,7 +25,7 @@ export const getEventById = async (req: Request, res: Response, next: NextFuncti
 export const createEvent = async (req: Request, res: Response, next: NextFunction) => {
     try {
         const event = await eventService.createEvent(req.body);
-        res.status(200).json(successResponse(event, "Event created succesfully"));
+        res.status(201).json(successResponse(event, "Event created succesfully"));
     } catch (error: unknown) {
         next(error);
     }
