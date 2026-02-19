@@ -1,3 +1,4 @@
 node_modules/
 dist/
 social-post-db-62b6e-firebase-adminsdk-fbsvc-cd5c21bfb8.json/
+config/*firebase-adminsdk*.json
