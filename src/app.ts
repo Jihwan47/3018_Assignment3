@@ -1,4 +1,5 @@
 import express, { Express } from "express";
+import morgan from "morgan";
 
 import healthRoutes from "./api/v1/routes/healthRoutes"
 import eventRoutes from "./api/v1/routes/eventRoutes"
@@ -6,6 +7,9 @@ import eventRoutes from "./api/v1/routes/eventRoutes"
 // Initialize Express application
 const app: Express = express();
 app.use(express.json());
+
+// Use Morgan for HTTP request logging
+app.use(morgan("combined"));
 
 // Define a route
 app.get("/", (req, res) => {
