@@ -5,10 +5,10 @@ dotenv.config();
 
 import morgan from "morgan";
 import getHelmetConfig from "./api/v1/middleware/helmet";
-//import cors from "cors";
+import cors from "cors";
 import healthRoutes from "./api/v1/routes/healthRoutes"
 import eventRoutes from "./api/v1/routes/eventRoutes"
-//import getCorsOptions from "./api/v1/middleware/cors";
+import getCorsOptions from "./api/v1/middleware/cors";
 
 // import setupSwagger from "../config/swagger";
 // import itemRoutes from "./api/v1/routes/itemRoutes";
@@ -21,7 +21,7 @@ import eventRoutes from "./api/v1/routes/eventRoutes"
 const app: Express = express();
 
 // Enable CORS for all routes
-//app.use(cors(getCorsOptions()));
+app.use(cors(getCorsOptions()));
 
 // helmet for security
 app.use(getHelmetConfig());
