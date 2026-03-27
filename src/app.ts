@@ -8,6 +8,7 @@ import cors from "cors";
 import healthRoutes from "./api/v1/routes/healthRoutes"
 import eventRoutes from "./api/v1/routes/eventRoutes"
 import getCorsOptions from "./api/v1/middleware/cors";
+import setupSwagger from "./api/v1/middleware/swagger";
 
 // import setupSwagger from "../config/swagger";
 // import itemRoutes from "./api/v1/routes/itemRoutes";
@@ -40,5 +41,7 @@ app.get("/", (req, res) => {
 // router defined in health routes, prefixed with /api/v1
 app.use("/api/v1", healthRoutes);
 app.use("/api/v1", eventRoutes);
+// Initialize Swagger
+setupSwagger(app);
 
 export default app;
