@@ -40,3 +40,33 @@ helmet({
 
 1. Helmet.js github- https://helmetjs.github.io/
 2. OneUptime (How to use helmet for security in express.js) - https://oneuptime.com/blog/post/2026-01-25-helmet-security-expressjs/view
+
+
+## cors.js Configuration
+
+### Configuration Applied
+
+if (isDevelopment) {
+        // Allow all origins in development for easy testing
+        return {
+            origin: true,
+            credentials: true,
+        };
+    }
+
+    // Strict origins in production
+    return {
+        origin: process.env.ALLOWED_ORIGINS?.split(",") || [],
+        credentials: true,
+        methods: ["GET", "POST", "PUT", "DELETE"],
+        allowedHeaders: ["Content-Type", "Authorization"],
+    };
+
+### Justification
+
+1. 
+
+### Sources
+
+1. MDN Web Docs (security and privacy [cors]) - https://developer.mozilla.org/en-US/docs/Web/HTTP/Guides/CORS
+2. MuleSoft (Corss-Origin Resource Sharing Policy) - https://docs.mulesoft.com/gateway/latest/policies-included-cors
