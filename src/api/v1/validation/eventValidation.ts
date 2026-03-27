@@ -2,8 +2,47 @@ import Joi from "joi";
 
 // Post operation schemas organized by request part
 export const postSchemas = {
-    // POST /posts - Create new post
-    // validate all the require fields when creating
+// POST /posts - Create new post
+// validate all the require fields when creating
+/**
+ * @openapi
+ * components:
+ *   schemas:
+ *     User:
+ *       type: object
+ *       required:
+ *         - name
+ *       properties:
+ *         name:
+ *           type: "string",
+ *           minLength: 3,
+ *           example: "General Meeting"
+ *         date:
+ *           type: "string"
+ *           format: "date-time",
+ *           description: "Event data is ISO format and must be greater than now",
+ *           example: "2025-12-31T23:59:59Z"
+ *         capacity:
+ *           type: "integer"
+ *           minimum: 5
+ *           default: 5
+ *           example: 100
+ *         registrationCount:
+ *           type: "integer"
+ *           minimum: 0
+ *           default: 0
+ *           description: "cannot exceed ref:capacity",
+ *           maximum: ref:capacity
+ *           example: 50
+ *         status:
+ *           type: "string"
+ *           enum: ["active", "cancelled", "completed"]
+ *           default: "active"
+ *         category:
+ *           type: "string"
+ *           enum: ["conference", "workshop", "meetup", "seminar", "general"]
+ *           default: "general"
+ */
     create: {
         body: Joi.object({
             name: Joi.string().min(3).required().messages({
@@ -39,7 +78,54 @@ export const postSchemas = {
             }),
         }),
     },
-    // validate all the require fields when updating
+
+// validate all the require fields when updating
+// PUT /put - Update existing post
+// validate all the require fields when updating an event by its id
+/**
+ * @openapi
+ * components:
+ *   schemas:
+ *     User:
+ *       type: object
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             required:
+ *               - name
+ *             properties:
+ *               name:
+ *                 type: "string",
+ *                 minLength: 3,
+ *                 example: "Conference meeting 2026"
+ *               date:
+ *                 type: "string"
+ *                 format: "date-time",
+ *                 description: "Event data is ISO format and must be greater than now",
+ *                 example: "2025-12-31T23:59:59Z"
+ *               capacity:
+ *                 type: "integer",
+ *                 minimum: 5
+ *                 default: 5
+ *                 example: 100
+ *               registrationCount:
+ *                 type: "integer"
+ *                 minimum: 0
+ *                 default: 0
+ *                 description: "cannot exceed ref:capacity",
+ *                 maximum: ref:capacity
+ *                 example: 50
+ *               status:
+ *                 type: "string"
+ *                 enum: ["active", "cancelled", "completed"]
+ *                 default: "active"
+ *               category:
+ *                 type: "string"
+ *                 enum: ["conference", "workshop", "meetup", "seminar", "general"]
+ *                 default: "general"
+ */
     update: {
         body: Joi.object({
             name: Joi.string().min(3).required().messages({
@@ -75,13 +161,44 @@ export const postSchemas = {
             }),
         }),
     },
-    // validate all the require fields when calling an event by its id
+// validate all the require fields when calling an event by its id
+// Get single post - validates params and optional query
+/**
+ * @openapi
+ * /events/{id}:
+ *   get:
+ *     summary: Retrieve a single event by ID
+ *     tags: [Events]
+ *     parameters:
+ *       - name: id
+ *         in: path
+ *         required: true
+ *         schema:
+ *           type: string
+ */
     getById: {
         body: Joi.object({
             id: Joi.string().required()
         }),
     },
-    // validate all the require fields when deleting an event by its id
+
+// validate all the require fields when deleting an event by its id
+// Delete post - validates params only
+/**
+ * @openapi
+ * /events/{id}:
+ *   delete:
+ *     summary: Delete an existing event
+ *     tags: [Events]
+ *     security:
+ *       - bearerAuth: []
+ *     parameters:
+ *       - name: id
+ *         in: path
+ *         required: true
+ *         schema:
+ *           type: string
+ */ 
     delete: {
         body: Joi.object({
             id: Joi.string().required()
