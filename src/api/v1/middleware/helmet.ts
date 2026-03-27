@@ -12,7 +12,7 @@ const getHelmetConfig = () => {
             hidePoweredBy: true, // hide freamwork, version or any vulnurability information
             dnsPrefetchControl: false, // Most of the browser prefetch DNS to improve performance, but it can be a privacy concern. Privacy Trade-off
             frameguard: {action: "deny"}, // Prevent clickjacking by disallowing the application from being embedded in frames.
-            // noSniff: true, // Prevent MIME type sniffing, which can lead to security vulnerabilities.
+            noSniff: true, // Prevent MIME type sniffing, which can lead to security vulnerabilities.
         });
     }
 
@@ -31,7 +31,7 @@ const getHelmetConfig = () => {
         hidePoweredBy: true,
 
         // // Prevent MIME type sniffing
-        // noSniff: true,
+        noSniff: true,
 
         // Prevent clickjacking by denying framing
         frameguard: { action: "deny" },
