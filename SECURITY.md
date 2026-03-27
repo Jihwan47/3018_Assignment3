@@ -64,7 +64,22 @@ if (isDevelopment) {
 
 ### Justification
 
-1. 
+1. origin: true (development)
+     * Allowing all origins in development allows for flexible testing development enviornment, simplifies testing from multiple local origins without CORS issues.
+
+2. credential: true (development)
+     * ensures cookies or authorization headers are included in cross-origin requests, which is important for authentication testing.
+
+3. origin: process.env.ALLOWED_ORIGINS?.split(",") || [] (production)
+     * In production, it is crucial to restrict allowed origins to trusted domains specified "origin: process.env.ALLOWED_ORIGINS?.split(",") || []," to prvents unauthorized
+     * websites from accessisng the API.
+
+4. credential: true (production)
+     * ensures cookies or authorization headers are included in cross-origin requests, which is important for authentication testing.
+     * But in production, origin is restricted to trusted domains, browers will reject request from unauthorized origins.
+
+5. methods:["GET", "POST", "PUT", "DELETE"] & allowedHeaders: ["Content-Type", "Authorization"] (production)
+     * Only necessary HTTP methods and headers are allowed to minimize attack surface and prevent any potential abuse.
 
 ### Sources
 
