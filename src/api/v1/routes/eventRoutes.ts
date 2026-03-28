@@ -57,13 +57,13 @@ const router = express.Router();
  *         content:
  *           application/json:
  *             schema:
- *               $ref: '#/components/validations/eventValidation'
+ *               $ref: '#/components/schemas/events'
  *       '400':
  *         description: Invalid input data
  *         content:
  *           application/json:
  *             schema:
- *               $ref: '#/components/validations/eventValidation'
+ *               $ref: '#/components/schemas/events'
  */
 router.post("/events", validateRequest(postSchemas.create), eventController.createEvent);
 
@@ -85,13 +85,13 @@ router.post("/events", validateRequest(postSchemas.create), eventController.crea
  *                 events:
  *                   type: array
  *                   items:
- *                     $ref: '#/components/validations/eventValidation'
+ *                     $ref: '#/components/schemas/events'
  *      '500':
  *         description: Internal server error
  *         content:
  *           application/json:
  *             schema:
- *               $ref: '#/components/validations/eventValidation'
+ *               $ref: '#/components/schemas/events'
  */
 router.get("/events", validateRequest(postSchemas.getById), eventController.getAllEvent);
 
@@ -119,13 +119,13 @@ router.get("/events", validateRequest(postSchemas.getById), eventController.getA
  *                 events:
  *                   type: array
  *                   items:
- *                     $ref: '#/components/validations/eventValidation'
+ *                     $ref: '#/components/schemas/events'
  *      '404':
  *         description: Event not found
  *         content:
  *           application/json:
  *             schema:
- *               $ref: '#/components/validations/eventValidation'
+ *               $ref: '#/components/schemas/events'
  */
 router.get("/events/:id", validateRequest(postSchemas.getById), eventController.getEventById);
 
@@ -190,19 +190,19 @@ router.get("/events/:id", validateRequest(postSchemas.getById), eventController.
  *         content:
  *           application/json:
  *             schema:
- *               $ref: '#/components/validations/eventValidation'
+ *               $ref: '#/components/schemas/events'
  *       '400':
  *         description: Invalid input data
  *         content:
  *           application/json:
  *             schema:
- *               $ref: '#/components/validations/eventValidation'
+ *               $ref: '#/components/schemas/events'
  *       '404':
  *         description: Event not found
  *         content:
  *           application/json:
  *             schema:
- *               $ref: '#/components/validations/eventValidation'
+ *               $ref: '#/components/schemas/events'
  */
 router.put("/events/:id", validateRequest(postSchemas.update), eventController.updateEvent);
 
@@ -232,13 +232,13 @@ router.put("/events/:id", validateRequest(postSchemas.update), eventController.u
  *                 events:
  *                   type: array
  *                   items:
- *                     $ref: '#/components/validations/eventValidation'
+ *                     $ref: '#/components/schemas/events'
  *      '404':
  *         description: Event not found
  *         content:
  *           application/json:
  *             schema:
- *               $ref: '#/components/validations/eventValidation'
+ *               $ref: '#/components/schemas/events'
  */
 router.delete("/events/:id", validateRequest(postSchemas.delete), eventController.deleteEvent);
 
